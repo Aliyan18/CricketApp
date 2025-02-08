@@ -14,10 +14,11 @@ export default function Home(){
     }, []);
   
     return(
-        <>
-        {loading?(<Loader></Loader>): 
+        <>         
+
+        {0?(<Loader></Loader>): 
         (<>
-         {/* <MatchResults></MatchResults>  */}
+         <MatchResults></MatchResults> 
          <div style={{display:'flex',flexDirection:'row-reverse',marginBottom:'100px'}}>
            <Fixtures ></Fixtures>  
          </div>

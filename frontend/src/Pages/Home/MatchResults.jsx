@@ -1,12 +1,22 @@
 import {useState,useEffect,useRef} from 'react'
 import CardWrap from './CardWrap'
-import {Button,Box,Slider,SliderTrack,SliderFilledTrack,SliderThumb,SliderMark} from '@chakra-ui/react'
+import {Button,Box} from '@chakra-ui/react'
 import './stylesheets/card.css'
 import DropDown from './DropDown'
 
 export default function MatchResults(){
     
-  const [data,setData]=useState(null)
+  const [data,setData]=useState([{
+    team1:'pakistan',
+    team2:'india',
+    team1_score:'282',
+    team2_score:'300',
+    status:'India won by 18 runs',
+    series:'india vs pakistan',
+    match_category:'international',
+    match_format:'ODI'
+
+  }])
     const [selectedMatchType,setSelectedMatchType]=useState('')
    
     useEffect(()=>{
@@ -53,7 +63,7 @@ export default function MatchResults(){
         display="flex"
         overflowX="auto"
         whiteSpace="nowrap"
-        paddingLeft="20px"
+        paddingLeft="50px"
         paddingRight="20px"
         ref={scrollRef}
         sx={{scrollbarWidth:'none',
@@ -62,9 +72,9 @@ export default function MatchResults(){
         }}
        
           >
-       <Button  top="3%" zIndex="1" position="absolute" 
+       <Button  top="7%" zIndex="1" position="absolute" 
         //bgColor="transparent"
-        opacity="0.4"
+        opacity="0.6"
         _hover ={{
           //backgroundColor:'white'
         opacity:"1"
@@ -81,9 +91,9 @@ export default function MatchResults(){
         <Button zIndex="1"
           margin="auto" 
           position='absolute'
-          top="3%" right='1'
+          top="7%" right='1'
           //bgColor="transparent"
-           opacity="0.4"
+           opacity="0.6"
           _hover ={{
             //backgroundColor:'white'
           opacity:"1"
@@ -91,10 +101,11 @@ export default function MatchResults(){
           onClick={()=>scroll("right")}>{rightSymbol}</Button>
 
         </Box>
-        <div >
+       
+         </div>
+         <div >
         <DropDown selectedMatchType={selectedMatchType} setSelectedMatchType={setSelectedMatchType}></DropDown>
         </div>
-         </div>
         </>
     )
 }

@@ -9,26 +9,27 @@ const [matches,setMatches]=useState(null)
 
 useEffect(()=>{
 
-    const fetchData= async()=>{
-        try {
-            const response = await fetch('http://127.0.0.1:8000/myapi/match_info');
+  //  const fetchData= async()=>{
+        // try {
+        //     const response = await fetch('http://127.0.0.1:8000/myapi/match_info');
             
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
+        //     if (!response.ok) {
+        //       throw new Error('Network response was not ok');
+        //     }
             
-            const result = await response.json();
+        //     const result = await response.json();
             
-            //setLoading(false)
-            setMatches(result)
-          console.log('fixtures re rendered')
-          }
-           catch (error) {
-            alert("ERROR");
-          }
-        }
+        //     //setLoading(false)
+        //     setMatches(result)
+        //   console.log('fixtures re rendered')
+        //   }
+        //    catch (error) {
+        //     alert("ERROR");
+        //   }
+       // }
   
-    fetchData();
+   // fetchData();
+   console.log("")
 },[])
 const fixtures= "<< fixtures "
 const scrollbarStyle = `
@@ -48,7 +49,7 @@ return(
 <>
 
 <style>{scrollbarStyle}</style>
-<div style={{ width:'32%',margin:'15px',padding:0,minHeight:"100vh",marginBottom:'10px'}}>
+<div style={{ width:'32%',margin:'15px',padding:0,height:"100vh",marginBottom:'10px'}}>
 <div style={{ fontWeight:'600', fontSize:'1.2rem', color: "#87CEEB", width: "100%",display:'flex', textAlign: "right",alignItems:'flex-end',justifyContent:"flex-end"  }}>
   <u>{fixtures}</u>
 </div>

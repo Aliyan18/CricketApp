@@ -14,11 +14,15 @@ from django.http import JsonResponse
 #    # return HttpResponse("Hello World")
 #    return Response(UserSerializer( {'name':'aliyan','age':18}).data)
 def say_hello(request):
+     
+	
     url = "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent"
 
     headers = {
-        "X-RapidAPI-Key": "c8ff194be9mshc35ab32d075fb7bp17a1e7jsn2f902760e321",
-        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+'X-RapidAPI-Host' :'cricbuzz-cricket.p.rapidapi.com',
+'X-RapidAPI-Key': 'ee1ba10db1msh7165df9ed4f6c96p19b981jsnbe0388a7e6c4'
+        # "X-RapidAPI-Key": "c8ff194be9mshc35ab32d075fb7bp17a1e7jsn2f902760e321",
+        # "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
     }
 
     response = requests.get(url, headers=headers)
@@ -98,8 +102,10 @@ def get_match_info(request):
     url = 'https://cricbuzz-cricket.p.rapidapi.com/schedule/v1/international' 
 
     headers = {
-        "X-RapidAPI-Key": "c8ff194be9mshc35ab32d075fb7bp17a1e7jsn2f902760e321",
-        "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+'X-RapidAPI-Host' :'cricbuzz-cricket.p.rapidapi.com',
+'X-RapidAPI-Key': 'ee1ba10db1msh7165df9ed4f6c96p19b981jsnbe0388a7e6c4'
+        # "X-RapidAPI-Key": "c8ff194be9mshc35ab32d075fb7bp17a1e7jsn2f902760e321",
+        # "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
     }
 
     response = requests.get(url, headers=headers)
