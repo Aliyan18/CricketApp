@@ -46,7 +46,7 @@ export default function MatchResults(){
    const scrollRef=useRef(null);
     const scroll=(direction)=>{
       if(scrollRef.current){
-        scrollRef.current.scrollLeft+=direction ==="left"?-300:300;
+        scrollRef.current.scrollLeft+=direction ==="left"?-window.innerWidth+150:window.innerWidth-150;
       }
     }
     const leftSymbol="<-"
