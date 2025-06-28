@@ -9,26 +9,26 @@ const [matches,setMatches]=useState(null)
 
 useEffect(()=>{
 
-  //  const fetchData= async()=>{
-        // try {
-        //     const response = await fetch('http://127.0.0.1:8000/myapi/match_info');
+   const fetchData= async()=>{
+        try {
+            const response = await fetch('http://127.0.0.1:8000/myapi/match_info');
             
-        //     if (!response.ok) {
-        //       throw new Error('Network response was not ok');
-        //     }
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
             
-        //     const result = await response.json();
+            const result = await response.json();
             
-        //     //setLoading(false)
-        //     setMatches(result)
-        //   console.log('fixtures re rendered')
-        //   }
-        //    catch (error) {
-        //     alert("ERROR");
-        //   }
-       // }
+            //setLoading(false)
+            setMatches(result)
+          console.log('fixtures re rendered')
+          }
+           catch (error) {
+            alert("ERROR");
+          }
+       }
   
-   // fetchData();
+   fetchData();
    console.log("")
 },[])
 const fixtures= "<< fixtures "

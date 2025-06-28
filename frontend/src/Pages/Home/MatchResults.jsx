@@ -53,9 +53,11 @@ export default function MatchResults(){
     const rightSymbol="->"
     return(
         <>
-        <div className="card-container"> 
+        <div className="card-container" style={{height:'250px'}}> 
         <Box bgColor="blue.300" 
         w="100%"
+        h="100%"
+        
        // paddingLeft='15%'
         //paddingRight='15%'
         overflow="auto" 

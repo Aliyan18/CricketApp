@@ -134,3 +134,69 @@ def get_match_info(request):
         return JsonResponse(match_details,safe=False)
     else:
         return JsonResponse({'error':'an error occured'},status=response.status_code)
+    
+import requests
+from django.http import JsonResponse
+
+def get_live(request):
+    url = "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent"
+
+    headers = {
+'X-RapidAPI-Host' :'cricbuzz-cricket.p.rapidapi.com',
+'X-RapidAPI-Key': 'ee1ba10db1msh7165df9ed4f6c96p19b981jsnbe0388a7e6c4'
+        # "X-RapidAPI-Key": "c8ff194be9mshc35ab32d075fb7bp17a1e7jsn2f902760e321",
+        # "X-RapidAPI-Host": "cricbuzz-cricket.p.rapidapi.com"
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raises an error if request fails
+
+        data = response.json()
+
+        # Extract matches and filter only live ones
+        all_matches = data.get("matches", [])
+        live_matches = [match for match in all_matches if match.get("status") == "Live"]
+
+        return JsonResponse({"live_matches": live_matches}, safe=False)
+
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+def get_news(request):
+  
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.chrome.options import Options
+    import time
+    # Setup
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver_path = "chromedriver"  # Adjust path if needed
+    driver = webdriver.Chrome()
+
+    try:
+        url = "https://www.espncricinfo.com/cricket-news"
+        driver.get(url)
+        time.sleep(3)  # Wait for page to load
+
+        # Get all article containers with class: ds-border-b ds-border-line ds-p-4
+        articles = driver.find_elements(By.CSS_SELECTOR, "div.ds-border-b.ds-border-line.ds-p-4 a")
+        news=[]
+        print("📰 Latest Cricket News Articles:\n")
+        for idx, a_tag in enumerate(articles, 1):
+            link = a_tag.get_attribute("href")
+            title = a_tag.text.strip()
+            if title:  # Only print if title exists
+                news.append({"idx":idx,'title':title, 'link':link})
+                print(f"{idx}. {title}\n   {link}\n")
+        driver.quit()        
+        return JsonResponse({"News: ": news}, safe=False)
+    
+    except requests.exceptions.RequestException as e:
+        driver.quit()
+        return JsonResponse({"error": str(e)}, status=500)
+        
+    
+
